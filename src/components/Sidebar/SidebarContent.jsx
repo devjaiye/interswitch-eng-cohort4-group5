@@ -27,7 +27,8 @@ const SidebarContent = () =>  {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const userDetails = (JSON.parse(localStorage.getItem("user"))).data;
-  console.log(userDetails)
+  console.log(userDetails.token)
+  console.log(userDetails.token.token)
   return (
     <>
       <div className="html h-full bg-white">

@@ -1,7 +1,8 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import AuthService from "../services/auth.service.js";
-import { Audio } from 'react-loader-spinner'
+import BlackListedService from "../services/blacklist.service.js"
+import { ColorRing } from 'react-loader-spinner'
 const Login = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -87,15 +88,15 @@ const Login = () => {
               <a href="#" className="mb-6 text-center text-sm font-medium text-gray-600 md:text-left">Forgot password?</a>
               <button type="submit" className="rounded-lg bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white shadow-md outline-none ring-blue-500 ring-offset-2 transition hover:bg-blue-700 focus:ring-2 md:w-32">
                 {
-                  loading ? <Audio
-                      height="80"
-                      width="80"
-                      radius="9"
-                      color="green"
-                      ariaLabel="loading"
-                      wrapperStyle
-                      wrapperClass
-                  /> :
+                  loading ? <ColorRing
+                          visible={true}
+                          height="80"
+                          width="80"
+                          ariaLabel="color-ring-loading"
+                          wrapperStyle={{}}
+                          wrapperClass="color-ring-wrapper"
+                          colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                      /> :
                       <span>Sign in</span>
                 }
               </button>

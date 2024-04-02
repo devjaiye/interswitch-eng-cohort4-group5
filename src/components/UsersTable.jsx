@@ -1,6 +1,9 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {useEffect} from "react";
+import BlackListedService from "../services/blacklist.service.js";
 
 const UsersTable = () => {
+  const userDetails  = JSON.parse(localStorage.getItem("user"))
   // Array of user objects containing user data
   const users = [
     { id: 3, fullName: 'Besique Monroe', userRole: 'User Admin', email: 'besique@example.com', createdAt: 'Jan 28, 2024', item: 'bag', status: 'Active' },
@@ -8,7 +11,11 @@ const UsersTable = () => {
     { id: 12, fullName: 'Elvis Son', userRole: 'User Admin', email: 'elvis@example.com', createdAt: 'Jan 28, 2024', item: 'chair', status: 'Suspended' },
     { id: 66, fullName: 'Dana White', userRole: 'Black List Admin', email: 'dana@example.com', createdAt: 'Jan 28, 2024', item: 'bag', status: 'Inactive' }
   ];
-
+  useEffect(()=> {
+    BlackListedService.readBlacklistedCategory().catch((e) => {
+      console.log(e)
+    })
+  }, [userDetails])
   return (
     <div className="mx-auto max-w-screen-lg px-4 py-8 sm:px-8">
       <div className="flex items-center justify-between pb-6">
