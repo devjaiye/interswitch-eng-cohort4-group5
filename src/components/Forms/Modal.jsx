@@ -1,20 +1,19 @@
+import {XMarkIcon } from '@heroicons/react/24/outline'
 
-function Modal({ isOpen, children, onClose }) {
+const Modal = ({isOpen, children, onClose}) => {
   if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-5 rounded shadow-lg">
-        {children}
-        <button
-          className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
-          onClick={onClose}
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  );
+  <div className="fixed inset-0 z-50 overflow-auto 0 bg-black flex  bg-opacity-50  justify-center items-center px-3">
+  <div className="relative p-5 bg-white w-full max-w-sm m-auto flex-col flex rounded-lg ">
+  <div>{children}</div>
+  <span className="absolute top-0 right-0 p-4">     
+   <button onClick={() => onClose()}>
+    <XMarkIcon className='h-5 w-5 text-red-500'/>
+   </button>
+ </span>
+ </div>
+</div>
+  )
 }
 
-export default Modal;
+export default Modal

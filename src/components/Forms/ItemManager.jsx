@@ -26,7 +26,7 @@ function ItemManager() {
   return (
     <div>
       <button
-      className='bg-blue-600 text-white justify-center flex items-center m-20 p-8 text-center focus:outline-none font-medium text-sm rounded-lg'
+      className='bg-blue-600 text-white justify-center flex items-center p-2 mt-10 ml-20 text-center focus:outline-none font-medium text-sm rounded-lg'
       onClick={() => handleOpenModal('createUser')}>Create New User</button>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {getForm()}
