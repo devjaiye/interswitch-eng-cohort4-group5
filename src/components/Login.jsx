@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import AuthService from "../services/auth.service.js";
 import { ColorRing } from 'react-loader-spinner'
 const Login = () => {
@@ -54,8 +54,11 @@ const Login = () => {
     } else {
       setLoading(false)
     }
-
-  }
+    
+  };
+  useEffect(() => {
+    localStorage.removeItem("user");
+  }, [])
   return (
       <div className="flex w-screen flex-wrap text-slate-800">
         <div className="flex w-full flex-col md:w-1/2">
@@ -85,12 +88,12 @@ const Login = () => {
 
               </div>
               <a href="#" className="mb-6 text-center text-sm font-medium text-gray-600 md:text-left">Forgot password?</a>
-              <button type="submit" className="rounded-lg bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white shadow-md outline-none ring-blue-500 ring-offset-2 transition hover:bg-blue-700 focus:ring-2 md:w-32">
+              <button type="submit" className="rounded-lg bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white shadow-md outline-none ring-blue-500 ring-offset-2 transition hover:bg-blue-700 focus:ring-2 md:w-32 flex justify-center align-middle">
                 {
                   loading ? <ColorRing
                           visible={true}
-                          height="80"
-                          width="80"
+                          height="24"
+                          width="24"
                           ariaLabel="color-ring-loading"
                           wrapperStyle={{}}
                           wrapperClass="color-ring-wrapper"

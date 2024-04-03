@@ -1,10 +1,14 @@
 import axios from "axios";
-
 const API_URL = "https://olaniyi.bsite.net/api/blacklist/";
-const userDetails = JSON.parse(localStorage.getItem("user")).data;
+let userDetails;
 let token;
-if (userDetails.token) {
-	token = userDetails.token.token;
+
+if (localStorage.getItem("user") === null && window.location.pathname !== "/"){
+	window.location.href = '/'
+}
+else if (localStorage.getItem("user") !== null){
+	userDetails = JSON.parse(localStorage.getItem("user"));
+	token = userDetails.data.token.token;
 }
 class BlackListedService {
 	blacklistUserCategory(category, reason, email, blacklistedAt, blacklistedById, isActive) {

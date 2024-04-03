@@ -1,8 +1,5 @@
 import axios from "axios";
-// import {useNavigate} from "react-router-dom";
-
 const API_URL = "https://olaniyi.bsite.net/api/account/";
-// const navigate = useNavigate()
 class AuthService {
 	login(email, password) {
 		return axios.post(API_URL + "login", {

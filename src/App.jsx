@@ -8,8 +8,8 @@ function App() {
 <BrowserRouter>
         <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/app/dashboard" element={<Users />} />
-            <Route path="/app/profile" element={<UserProfile />} />
+            <Route path="/app/dashboard" element={<Users />} errorElement={<Login/>}/>
+            <Route path="/app/profile" element={<UserProfile />} errorElement={<Login/>}/>
         </Routes>
     </BrowserRouter>
   );
