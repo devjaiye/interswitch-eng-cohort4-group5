@@ -1,7 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import AuthService from "../services/auth.service.js";
-import BlackListedService from "../services/blacklist.service.js"
 import { ColorRing } from 'react-loader-spinner'
 const Login = () => {
   const navigate = useNavigate()
