@@ -2,8 +2,8 @@ import axios from "axios";
 const API_URL = "https://olaniyi.bsite.net/api/blacklist/";
 let userDetails;
 let token;
-
-if (localStorage.getItem("user") === null && window.location.pathname !== "/"){
+console.log(window.location)
+if (localStorage.getItem("user") === null && (window.location.pathname !== "/" && !window.location.pathname.includes("/change-password"))){
 	window.location.href = '/'
 }
 else if (localStorage.getItem("user") !== null){

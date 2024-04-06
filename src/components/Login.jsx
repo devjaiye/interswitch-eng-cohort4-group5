@@ -37,8 +37,11 @@ const Login = () => {
 
     if(Object.keys(validationErrors).length === 0) {
       AuthService.login(formData.email, formData.password).then(
-          () => {
-            navigate("/app/dashboard");
+          (res) => {
+            setLoading(false);
+            if (res.isSuccessful){
+              navigate("/app/dashboard");
+            }
           },
           error => {
             const resMessage =

@@ -1,5 +1,6 @@
 import axios from "axios";
 const API_URL = "https://olaniyi.bsite.net/api/account/";
+const userId = localStorage.getItem("userId") | "";
 class AuthService {
 	login(email, password) {
 		return axios.post(API_URL + "login", {
@@ -19,6 +20,8 @@ class AuthService {
 					// navigate("/app/dashboard");
 				}
 				return response.data;
+			}).catch((e) => {
+				alert(e)
 			});
 	}
 
@@ -26,11 +29,18 @@ class AuthService {
 		localStorage.removeItem("user");
 	}
 
-	register(username, email, password) {
-		return axios.post(API_URL + "signup", {
-			username,
-			email,
-			password
+	changePassword(newPassword, currentPassword) {
+		return axios.post(API_URL + `change-password/${{userId}}`, {
+			currentPassword,
+			newPassword
+			},
+			{
+				headers: {
+					language: "en"
+				}
+			}
+			).catch((e) => {
+				alert(e)
 		});
 	}
 
