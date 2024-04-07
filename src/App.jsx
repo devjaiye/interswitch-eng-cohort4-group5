@@ -1,6 +1,4 @@
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Users from './pages/Users.jsx'
 import UserProfile from './pages/UserProfile.jsx';
 import Login from "./components/Login.jsx";
 import CreatePassword from "./components/CreatePassword.jsx";
@@ -19,3 +17,4 @@ function App() {
   )}
 
 
+export default App
