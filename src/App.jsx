@@ -1,21 +1,19 @@
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import SidebarContent from './components/Sidebar/SidebarContent';
-// import Users from './pages/Users.jsx'
-// import UserProfile from './pages/UserProfile.jsx';
-import ItemManager from './components/Forms/ItemManager.jsx';
+import Dashboard from "./components/Dashboard";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 
 
 function App() {
   return (
-
-  <div>
-    <ItemManager/>
-  </div>
-  
+    <Router>
+    <div className="text-red-700">
+      
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
+    </div>
+    </Router>
   );
 }
 
 export default App;
-
-
-
