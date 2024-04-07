@@ -2,7 +2,9 @@ import { useState } from "react";
 import SlideOver from "./SlideOver";
 import CardDetailsSlide from "./CardDetailsSlide";
 import DeleteDialogue from "./DeleteDialogue";
+import AddNewCardSlide from "./AddNewCardSlide";
 import AddNewUserSlide from "./AddNewUserSlide";
+import RemoveByCategory from "./RemoveByCategory";
 import RemoveByCategorySlide from "./RemoveByCategorySlide";
 
 const people = [
