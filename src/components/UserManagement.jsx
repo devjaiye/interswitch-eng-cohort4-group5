@@ -17,14 +17,14 @@ export default function UserManagement() {
   const [deleteCard, setDeleteCard] = useState(false)
   
   return (
-    <div className="bg-gray-900 min-h-[90vh]" onClick={()=>setOpenAction(null)}>
+    <div className="bg-gray-100 min-h-[90vh]" onClick={()=>setOpenAction(null)}>
       <div className="mx-auto max-w-7xl">
-        <div className="bg-gray-900 h-full py-10">
+        <div className="bg-gray-100 h-full py-10">
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
               <div className="sm:flex-auto">
-                <h1 className="text-base font-semibold leading-6 text-white">Users Table</h1>
-                <p className="mt-2 text-sm text-gray-300">
+                <h1 className="text-base font-semibold leading-6 text-black">Users Table</h1>
+                <p className="mt-2 text-sm text-black">
                   A list of all the users in your account including their name, title, email and role.
                 </p>
               </div>
@@ -50,22 +50,22 @@ export default function UserManagement() {
                   <table className="min-w-full">
                     <thead>
                       <tr>
-                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0">
+                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-0">
                           First Name
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                          Last Name
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                           Email
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                           Phone No
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                           User Role
                         </th>
-                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                           Action
                         </th>
                         <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
@@ -79,11 +79,11 @@ export default function UserManagement() {
                           {/* <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
                             {person.cardNo}
                           </td> */}
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.firstName}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.lastName}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.email}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.phoneNo}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.userRole}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.firstName}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.lastName}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.email}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.phoneNo}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.userRole}</td>
                           <td onClick={(e)=>{e.stopPropagation(); setOpenAction(index)}} className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                             <p className="text-indigo-400 cursor-pointer hover:text-indigo-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

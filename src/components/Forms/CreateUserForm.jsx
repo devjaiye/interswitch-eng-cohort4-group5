@@ -1,16 +1,33 @@
-const CreateUserForm = ({ onSubmit })=> {
-  const handleSubmit = (event) => {
+
+import { createUser } from '../../services/createUser';
+const CreateUserForm = ()=> {
+    
+  const handleSubmit =  async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const userData = Object.fromEntries(formData);
 
-    const phoneNumber = userData.phoneNumber.trim(); // Remove leading and trailing whitespace
+    const phoneNumber = userData.phoneNumber.trim(); 
     if (!/^\d{1,11}$/.test(phoneNumber)) {
       alert("Phone number should contain only digits and not exceed 11 characters.");
       return; 
     }
+      const apiUserData = {
+        ...userData,
+        role: [{roleName: userData.role}]
 
-    onSubmit(userData);
+      }
+      try {
+        await createUser(apiUserData);
+        alert("User created successfully");
+
+      } 
+
+      catch (error){
+        console.error(error);
+        alert("Failed to create user. Please try again")
+      }
+    
   };
 
   return (
