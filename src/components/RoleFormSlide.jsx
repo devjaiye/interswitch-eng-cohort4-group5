@@ -1,11 +1,11 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import RemoveFromBlacklistForm from './RemoveFromBlacklistForm'
-import CardDetails from './CardDetails'
-import PermissionDetails from './PermissionsDetails'
+import RoleForm from './RoleForm'
+import RoleEditForm from './RoleEditForm'
+import PermissionForm from './PermissionForm'
 
-export default function CardDetailsSlide({open, setOpen, data, tab}) {
+export default function RoleFormSlide({open, setOpen, openForm, data, id}) {
   // const [open, setOpen] = useState(true)
 
   return (
@@ -40,7 +40,7 @@ export default function CardDetailsSlide({open, setOpen, data, tab}) {
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-2xl font-semibold leading-6 text-gray-900">
-                          {tab === 'permission' ? 'Permission Details' : 'Roles Details'}
+                          {openForm ==='edit' ? 'Edit Form Role' : openForm === 'permission' ? 'Create Permission Form' : 'Create Role Form'}
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
@@ -56,7 +56,7 @@ export default function CardDetailsSlide({open, setOpen, data, tab}) {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {tab === 'permission' ? <PermissionDetails data={data} /> : <CardDetails data={data} />}
+                      {openForm === 'edit' ? <RoleEditForm data={data} id={id} /> : openForm === 'permission' ? <PermissionForm /> : <RoleForm />}
                     </div>
                   </div>
                 </Dialog.Panel>
