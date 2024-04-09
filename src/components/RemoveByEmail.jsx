@@ -1,20 +1,27 @@
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select';
-import { blacklistByCategory } from '../services/api-calls';
+import { blacklistByEmail, getAllUsers } from '../services/api-calls';
+import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-const RemoveByCategory = () => {
-  const { handleSubmit, reset, refetch, control} = useForm()
+const RemoveByEmail = () => {
+  const { handleSubmit, reset, control} = useForm()
   const [loading, setLoading] = useState(false)
 
+  const {data: people, refetch} = useQuery({
+    queryKey: ["GetAllUsers"], 
+    queryFn: () => getAllUsers()
+  })
+
   const onSubmit = async (input) => {
+    setLoading(true)
     const myData = {
-      category: input.category.label,
+      email: input.email.label,
       reason: input.reason
     }
     console.log('blackdata: ', myData)
-    const submit = await blacklistByCategory(myData)
+    const submit = await blacklistByEmail(myData)
     if(submit && submit.data.data == true){
       toast.success('User was blacklisted successfully!')
       reset()
@@ -24,27 +31,24 @@ const RemoveByCategory = () => {
     refetch()
     setLoading(false)
   }
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3'>
       <div className='w-full'>
       <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
-        Select Department
+        Select Email
       </label>
       <Controller
-        name="category"
+        name="email"
         control={control}
-        defaultValue='Administratives'
+        defaultValue=''
         rules={{ required: true }}
         render={({ field }) => (
           <Select
           className='text-gray-900'
             {...field}
-            options={[
-              { value: "Administratives", label: "Administratives" },
-              { value: "Operations", label: "Operations" },
-              { value: "Technologies", label: "Technology" }
-            ]}
+            options={people && people.map((user) => ({value: user.email, label: user.email}) )}
             
             onChange={(selectedOption) => {field.onChange(selectedOption); console.log('select: ', selectedOption)}}
             
@@ -89,4 +93,4 @@ const RemoveByCategory = () => {
   )
 }
 
-export default RemoveByCategory
+export default RemoveByEmail

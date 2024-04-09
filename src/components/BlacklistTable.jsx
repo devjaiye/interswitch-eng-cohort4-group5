@@ -3,6 +3,8 @@ import SlideOver from "./SlideOver"
 import CardDetailsSlide from "./CardDetailsSlide"
 import DeleteDialogue from "./DeleteDialogue"
 import RemoveByCategorySlide from "./RemoveByCategorySlide"
+import { getAllBlacklist } from "../services/api-calls"
+import { useQuery } from "@tanstack/react-query"
 
 const people = [
   { firstName: 'Daniel', lastName: 'AdeKunle', email: 'daniel@testmail.com', phoneNo: '081400949832', userRole: 'Admin', department: "Technologies" },
@@ -17,6 +19,11 @@ export default function BlacklistTable() {
   const [openCardDetails, setOpenCardDetails] = useState(false)
   const [deleteCard, setDeleteCard] = useState(false)
   const [removeByCategory, setRemoveByCategory] = useState(false)
+
+  const {data: people, isLoading} = useQuery({
+    queryKey: ["GetAllBlacklist"], 
+    queryFn: () => getAllBlacklist()
+  })
   
   return (
     <div className="bg-gray-900 min-h-[90vh]" onClick={()=>setOpenAction(null)}>

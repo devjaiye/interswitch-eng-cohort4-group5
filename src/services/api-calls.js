@@ -1,17 +1,20 @@
 import axios from "axios"
 
-export const createUser = async (input) =>{
-  const headers = {
-    headers: {
-      language: "en"
-    }
-  }
-  const response = await axios.post("https://olaniyi.bsite.net/api/users/create-user", input, headers);
+// export const createUser = async (input) =>{
+//   const user = (JSON.parse(localStorage.getItem("user"))).data;
+//   const token = user.token.token
+//   const headers = {
+//     headers: {
+//       'Authorization': `Bearer ${token}`,
+//       language: "en"
+//     }
+//   }
+//   const response = await axios.post("https://olaniyi.bsite.net/api/users/create-user", input, headers);
 
-  if(response.status){
-    console.log('User created successfully')
-  }
-}
+//   if(response.status){
+//     console.log('User created successfully')
+//   }
+// }
 
 export const createRole = async (input) =>{
   const user = (JSON.parse(localStorage.getItem("user"))).data;
@@ -168,5 +171,142 @@ export const deletePermission = async (id) =>{
     return response.data.data
   }else{
     console.log("delete permission err: ", response)
+  }
+}
+
+export const getAllRolePermission = async () =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'language': "en"
+    }
+  }
+  const response = await axios.get("https://olaniyi.bsite.net/api/rolepermission/get-all-assigned-permissions", headers);
+  if(response.status === 200){
+    return response.data.data
+  }else{
+    console.log("All roles err: ", response)
+  }
+}
+
+export const getAllUsers = async () =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'language': "en"
+    }
+  }
+  const response = await axios.get("https://olaniyi.bsite.net/api/users/view-all-users", headers);
+  if(response.status === 200){
+    return response.data.data
+  }else{
+    console.log("All roles err: ", response)
+  }
+}
+
+export const getSingleUser = async (id) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      'language': "en"
+    }
+  }
+  const response = await axios.get(`https://olaniyi.bsite.net/api/users/view-users?userid=${id}`, headers);
+  if(response.status === 200){
+    return response.data.data
+  }else{
+    console.log("single permission  err: ", response)
+  }
+}
+
+export const createUser = async (input) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      language: "en"
+    }
+  }
+  const response = await axios.post("https://olaniyi.bsite.net/api/users/create-user", input, headers);
+  if(response.status === 200){
+    return response
+  }else{
+    console.log("Create user was unsuccessful")
+  }
+}
+
+export const deleteUser = async (input) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      language: "en"
+    }
+  }
+  const response = await axios.post(`https://olaniyi.bsite.net/api/users/delete-user-profile?email=${input}`, headers);
+  if(response.status === 200){
+    return response
+  }else{
+    console.log("delete user was unsuccessful")
+  }
+}
+
+export const blacklistByCategory = async (input) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      language: "en"
+    }
+  }
+  const response = await axios.post("https://olaniyi.bsite.net/api/blacklist/blacklist-user-category", input, headers);
+  if(response.status === 200){
+    return response
+  }else{
+    console.log("Create blacklist was unsuccessful")
+  }
+}
+
+export const blacklistByEmail = async (input) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      language: "en"
+    }
+  }
+  const response = await axios.post("https://olaniyi.bsite.net/api/blacklist/blacklist-user-email", input, headers);
+  if(response.status === 200){
+    return response
+  }else{
+    console.log("Create blacklist was unsuccessful")
+  }
+}
+
+export const getAllBlacklist = async () =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      language: "en"
+    }
+  }
+  const response = await axios.get("https://olaniyi.bsite.net/api/blacklist/read-all-blacklisted-user", headers);
+  if(response.status === 200){
+    return response.data.data
+  }else{
+    console.log("all blacklist was unsuccessful")
   }
 }

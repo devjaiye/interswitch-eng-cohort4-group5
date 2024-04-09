@@ -4,6 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import RoleForm from './RoleForm'
 import RoleEditForm from './RoleEditForm'
 import PermissionForm from './PermissionForm'
+import RolePermissionForm from './RolePermissionForm'
 
 export default function RoleFormSlide({open, setOpen, openForm, data, id}) {
   // const [open, setOpen] = useState(true)
@@ -56,7 +57,7 @@ export default function RoleFormSlide({open, setOpen, openForm, data, id}) {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {openForm === 'edit' ? <RoleEditForm data={data} id={id} /> : openForm === 'permission' ? <PermissionForm /> : <RoleForm />}
+                      {openForm === 'edit' ? <RoleEditForm data={data} id={id} /> : openForm === 'permission' ? <PermissionForm /> : openForm === 'rolepermission' ? <RolePermissionForm /> : <RoleForm />}
                     </div>
                   </div>
                 </Dialog.Panel>
