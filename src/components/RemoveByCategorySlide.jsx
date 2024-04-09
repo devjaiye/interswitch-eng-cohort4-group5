@@ -3,8 +3,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import RemoveFromBlacklistForm from './RemoveFromBlacklistForm'
 import RemoveByCategory from './RemoveByCategory'
+import RemoveByEmail from './RemoveByEmail'
 
-export default function RemoveByCategorySlide({open, setOpen}) {
+export default function RemoveByCategorySlide({open, setOpen, slide}) {
   // const [open, setOpen] = useState(true)
 
   return (
@@ -55,7 +56,7 @@ export default function RemoveByCategorySlide({open, setOpen}) {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      <RemoveByCategory />
+                      {slide === 'email' ? <RemoveByEmail /> : <RemoveByCategory />}
                     </div>
                   </div>
                 </Dialog.Panel>

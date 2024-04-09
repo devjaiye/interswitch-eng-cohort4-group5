@@ -18,6 +18,7 @@ import UserProfile from '../pages/UserProfile'
 import Profile from './Profile'
 import RoleTable from './RoleTable'
 import PermissionsTable from './PermissionsTable'
+import RolePermissionTable from './RolePermissionTable'
 
 const navigation = [
   { name: 'Dashboard', href: '', icon: HomeIcon, current: true },
@@ -27,6 +28,7 @@ const navigation = [
   { name: 'User Profile', href: "userprofile", icon: UsersIcon, current: false },
   { name: 'Roles', href: "roles", icon: UsersIcon, current: false },
   { name: 'Permissions', href: "permissions", icon: UsersIcon, current: false },
+  { name: 'RolePermissions', href: "rolepermissions", icon: UsersIcon, current: false },
 ]
 
 function classNames(...classes) {
@@ -191,7 +193,7 @@ export default function Dashboard() {
 
         <main className="py-10 lg:pl-72">
           <div className="px-4 sm:px-6 lg:px-8">
-            {page === "allCards" ?  <Table /> : page === "blacklistedCards" ? <BlacklistTable /> : page === "userManagement" ? <UserManagement /> : page === "userprofile" ? <Profile /> : page === "roles" ? <RoleTable /> : page === 'permissions' ? <PermissionsTable /> : <Home /> }
+            {page === "allCards" ?  <Table /> : page === "blacklistedCards" ? <BlacklistTable /> : page === "userManagement" ? <UserManagement /> : page === "userprofile" ? <Profile /> : page === "roles" ? <RoleTable /> : page === 'permissions' ? <PermissionsTable /> : page === "rolepermissions" ? <RolePermissionTable /> : <Home /> }
           </div>
         </main>
       </div>
