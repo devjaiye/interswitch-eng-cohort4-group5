@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UserDetails = () => {
+const UserDetails = ({data}) => {
   return (
     <div>
 
@@ -12,16 +12,23 @@ const UserDetails = () => {
 
       <div className='grid grid-cols-2 gap-y-3'>
         <p>Name: </p>
-        <p>Joy Obi</p>
+        <p>{data.firstName} {data.lastName}</p>
 
         <p>Email: </p>
-        <p>joy@testmail.com</p>
+        <p>{data.email}</p>
 
         <p>Phone No: </p>
-        <p>08067578834</p>
+        <p>{data.phoneNumber}</p>
 
         <p>Role: </p>
-        <p>User</p>
+        <p>{data.userRoles.map((roles, index) => {
+          return(
+            <span className='mr-1'>{roles.roleName}</span>
+          )
+        })}</p>
+
+        <p>isBlacklisted: </p>
+        <p>{data.isBlacklisted ? 'True' : 'false'}</p>
 
         <p>Last Seen:</p>
         <p>08:03pm, 02-04-2024</p>

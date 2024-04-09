@@ -1,13 +1,39 @@
-const stats = [
-  { id: 1, name: 'Number of User Admin', value: '4' },
-  { id: 2, name: 'Number of Blacklist Admin', value: '6' },
-  { id: 3, name: 'Total Number of Users', value: '10' },
-  { id: 1, name: 'Number of active users', value: '12' },
-  { id: 2, name: 'Number of Blaclisted users', value: '9' },
-  { id: 3, name: 'Total Number of user', value: '21' },
-]
+import { useQuery } from "@tanstack/react-query"
+import { getAllBlacklist, getAllPermissions, getAllRoles, getAllUsers } from "../services/api-calls"
+
+
+
 
 export default function Home() {
+  const {data: roles} = useQuery({
+    queryKey: ["GetAllRoles"], 
+    queryFn: () => getAllRoles()
+  })
+
+  const {data: permissions} = useQuery({
+    queryKey: ["GetAllPermissions"], 
+    queryFn: () => getAllPermissions()
+  })
+
+  const {data: users} = useQuery({
+    queryKey: ["GetAllUsers"], 
+    queryFn: () => getAllUsers()
+  })
+
+  const {data:blacklistUsers} = useQuery({
+    queryKey: ["GetAllBlacklist"], 
+    queryFn: () => getAllBlacklist()
+  })
+
+  const stats = [
+    { id: 1, name: 'Number of User', value: users.length },
+    { id: 2, name: 'Number of Blacklisted User', value: blacklistUsers.length },
+    { id: 3, name: 'Total Number of Users', value: users.length + blacklistUsers.length },
+    { id: 1, name: 'Number of Roles', value: roles.length },
+    { id: 2, name: 'Number of Departments', value: '3' },
+    { id: 3, name: 'Total Number of Number of Permissions', value: permissions.length},
+  ]
+
   return (
     <div>
       <h2 className="text-3xl font-semibold text-black mb-4 pl-6">Admin Dashboard</h2>
