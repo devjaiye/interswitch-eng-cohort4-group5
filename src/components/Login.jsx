@@ -126,7 +126,6 @@ const Login = () => {
                src="https://scanbot.io/wp-content/uploads/2024/02/demo-apps-feature-barcode-768x717.png" />
         </div>
       </div>
-
   );
 }
 

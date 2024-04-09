@@ -5,7 +5,7 @@ import DeleteDialogue from "./DeleteDialogue"
 import RemoveByCategorySlide from "./RemoveByCategorySlide"
 import RoleFormSlide from "./RoleFormSlide"
 import { toast, Toaster } from "sonner"
-import { useQuery } from "@tanstack/react-query"
+import {useQuery, useQueryClient} from "@tanstack/react-query"
 import { deleteRole, getAllRoles, getSignleRole } from "../services/api-calls"
 
 
@@ -18,6 +18,7 @@ export default function RoleTable() {
   const [roleId, setRoleId] = useState()
   const [loading, setLoading] = useState(false)
   const [openForm, setOpenForm] = useState('')
+  const queryClient = useQueryClient()
 
   const {data, isLoading} = useQuery({
     queryKey: ["GetAllRoles"], 
@@ -31,18 +32,19 @@ export default function RoleTable() {
 
   useEffect(()=>{
     fetchSingleRole();
-    console.log('Triggered')
   }, [roleId, fetchSingleRole])
 
-  const deleteSingleRole = async (id) => {
+  const deleteSingleRole = async () => {
     setLoading(true)
-    const response = await deleteRole(id)
-    if(response){
+    const response = await deleteRole(roleId)
+    console.log(response)
+    if(response.successMessage){
       toast.success("Role delete successfully!")
     }else{
       toast.error("Couldn't delete role!")
     }
     setLoading(false)
+    queryClient.invalidateQueries('GetAllRoles');
   }
 
   const getRoleDetails = async (id) => {
@@ -51,7 +53,7 @@ export default function RoleTable() {
 
   useEffect(()=>{
     if(loading){
-    toast.loading('Deleteing...')
+      toast.loading('Deleteing...', {duration: 2000})
     }
   }, [loading])
 
@@ -85,9 +87,9 @@ export default function RoleTable() {
                 >
                   Create Role
                 </button>
-                <RoleFormSlide open={openSlide} setOpen={setOpenSlide} openForm={openForm} data={roleDetails} id={roleId} />
+                <RoleFormSlide open={openSlide} setOpen={setOpenSlide} openForm={openForm} data={roleDetails} id={roleId} openType="role"/>
                 <CardDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} data={roleDetails} />
-                <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} deleteFn={deleteSingleRole} id={roleId}/>
+                <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} deleteFn={deleteSingleRole} id={roleId} actionFor="role"/>
                 <RemoveByCategorySlide open={removeByCategory} setOpen={setRemoveByCategory} />
 
               </div>

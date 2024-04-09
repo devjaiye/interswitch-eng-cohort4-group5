@@ -1,10 +1,12 @@
-import { useState } from "react"
+import {useEffect, useState} from "react"
 import DeleteDialogue from "./DeleteDialogue"
 import AddNewUserSlide from "./AddNewUserSlide"
 import UserDetailsSlide from "./UserDetailsSlide"
-import { getAllUsers } from "../services/api-calls"
+import {deleteUser, getAllUsers, getSingleUser} from "../services/api-calls"
 import { useQuery } from "@tanstack/react-query"
 import { Toaster } from "sonner"
+import {data} from "autoprefixer";
+import userDetails from "./UserDetails.jsx";
 
 
 export default function UserManagement() {
@@ -12,12 +14,27 @@ export default function UserManagement() {
   const [openSlide, setOpenSlide] = useState(false)
   const [openCardDetails, setOpenCardDetails] = useState(false)
   const [deleteCard, setDeleteCard] = useState(false)
+  const [userId, setUserId] = useState()
+  const [userEmail, setUserEmail] = useState()
+  const [user, setUser] = useState({})
 
   const {data: people, isLoading} = useQuery({
     queryKey: ["GetAllUsers"], 
     queryFn: () => getAllUsers()
   })
+  const {data: userDetails, refetch: fetchSingleUser} = useQuery({
+    queryKey: ["GetSingleUser"],
+    queryFn: () => getSingleUser(userId),
+  })
+  const {refetch: deleteSingleUser} = useQuery({
+    queryKey: ["DeleteSingleUser"],
+    queryFn: () => deleteUser(user.email),
+  })
 
+  useEffect(()=>{
+    fetchSingleUser();
+    console.log('Triggered')
+  }, [userId, fetchSingleUser])
 
   if(isLoading){
     return (
@@ -51,8 +68,8 @@ export default function UserManagement() {
                   Create New User
                 </button>
                 {/* <CardDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} /> */}
-                <UserDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} />
-                <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} />
+                <UserDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} data={user}/>
+                <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} deleteFn2={deleteSingleUser} actionFor="user"/>
                 <AddNewUserSlide open={openSlide} setOpen={setOpenSlide}/>
 
               </div>
@@ -111,7 +128,7 @@ export default function UserManagement() {
                             {openAction === index && 
                             <div className= "w-24 bg-slate-100 text-black z-20 rounded-md shadow-md absolute right-0">
                               <ul className="flex flex-col gap-1 w-full text-sm items-start bg-none py-1">
-                                <li onClick={(e)=>{e.stopPropagation(); setOpenCardDetails(true); setOpenAction(null)}} className="cursor-pointer p-1 px-2 hover:bg-slate-200 hover:rounded-md w-full text-start">View</li>
+                                <li onClick={(e)=>{e.stopPropagation(); setUser(person);setOpenCardDetails(true); setOpenAction(null)}} className="cursor-pointer p-1 px-2 hover:bg-slate-200 hover:rounded-md w-full text-start">View</li>
                                 <li onClick={(e)=>{e.stopPropagation(); setOpenAction(null); setDeleteCard(true)}} className="cursor-pointer p-1 px-2 hover:bg-slate-200 hover:rounded-md w-full text-start">Delete</li>
                               </ul>
                             </div>

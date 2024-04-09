@@ -81,7 +81,7 @@ export default function RolePermissionTable() {
                 >
                   Create RolePermission
                 </button>
-                <RoleFormSlide open={openSlide} setOpen={setOpenSlide} openForm={openForm} id={permissionId} />
+                <RoleFormSlide open={openSlide} setOpen={setOpenSlide} openForm={openForm} id={permissionId} openType="rolepermission"/>
                 <CardDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} data={roleDetails} tab={''} />
                 <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} deleteFn={deleteSinglePermission} id={permissionId}/>
                 <RemoveByCategorySlide open={removeByCategory} setOpen={setRemoveByCategory} />

@@ -17,6 +17,7 @@ export default function Table() {
   const [userId, setUserId] = useState()
   const [userEmail, setUserEmail] = useState()
   const [slide, setSlide] = useState('category')
+  const [user, setUser] = useState({})
   const [categoryBlacklist, setCategoryBlacklist] = useState(false)
 
   const {data: people, isLoading} = useQuery({
@@ -86,7 +87,7 @@ export default function Table() {
           </button>
         </div>
                 {/* <CardDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} data={userDetails} /> */}
-                <UserDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} data={userDetails} />
+                <UserDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} data={user} />
                 <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} deleteFn2={deleteSingleUser} />
                 <AddNewUserSlide open={openSlide} setOpen={setOpenSlide}/>
                 <RemoveByCategorySlide open={categoryBlacklist} setOpen={setCategoryBlacklist} slide={slide} />
@@ -135,7 +136,7 @@ export default function Table() {
                               <span className="mr-1" key={index}>{role.roleName}</span>
                             )
                           })}</td>
-                          <td onClick={(e)=>{e.stopPropagation(); setOpenAction(index); setUserId(person.id); setUserEmail(person.email)}} className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                          <td onClick={(e)=>{e.stopPropagation(); setUser(person);setOpenAction(index); setUserId(person.id); setUserEmail(person.email)}} className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                             <p className="text-indigo-400 cursor-pointer hover:text-indigo-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />

@@ -1,6 +1,5 @@
-import React from 'react'
-
 const UserDetails = ({data}) => {
+  console.log(data)
   return (
     <div>
 

@@ -2,7 +2,7 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
-export default function DeleteDialogue({open, setOpen, deleteFn, deleteFn2, id}) {
+export default function DeleteDialogue({open, setOpen, deleteFn, deleteFn2, id, actionFor}) {
   // const [open, setOpen] = useState(true)
 
   const cancelButtonRef = useRef(null)
@@ -44,24 +44,38 @@ export default function DeleteDialogue({open, setOpen, deleteFn, deleteFn2, id})
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to delete this user? This action cannot be undone.
+                        Are you sure you want to delete this {actionFor === "role" ? "role" : "user"}? This action cannot be undone.
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+                  {
+                    actionFor === "role" || actionFor === "permission" ? <button
+                        type="button"
+                        className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                        onClick={() => {
+                          deleteFn();
+                          setOpen(false)
+                        }}
+                    >
+                      Delete
+                    </button> : <button
+                        type="button"
+                        className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                        onClick={() => {
+                          deleteFn2();
+                          setOpen(false)
+                        }}
+                    >
+                      Delete
+                    </button>
+                  }
                   <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                    onClick={() => {deleteFn2(); setOpen(false)}}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => setOpen(false)}
-                    ref={cancelButtonRef}
+                      type="button"
+                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                      onClick={() => setOpen(false)}
+                      ref={cancelButtonRef}
                   >
                     Cancel
                   </button>

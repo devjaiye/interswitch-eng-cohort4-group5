@@ -42,7 +42,7 @@ export const getAllRoles = async () =>{
       'language': "en"
     }
   }
-  const response = await axios.get("https://olaniyi.bsite.net/api/roles/view-role", headers);
+  const response = await axios.get("https://olaniyi.bsite.net/api/roles/view-role",headers);
   if(response.status === 200){
     return response.data.data
   }else{
@@ -57,12 +57,13 @@ export const deleteRole = async (id) =>{
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
-      'language': "en"
+      'language': "en",
+      'id': id
     }
   }
-  const response = await axios.post(`https://olaniyi.bsite.net/api/roles/delete-role?id=${id}`, headers);
+  const response = await axios.post(`https://olaniyi.bsite.net/api/roles/delete-role?id=${id}`, "",headers);
   if(response.status === 200){
-    return response.data.data
+    return response.data
   }else{
     console.log("delete roles err: ", response)
   }
@@ -98,11 +99,30 @@ export const editRole = async (id, input) =>{
   }
   const response = await axios.post(`https://olaniyi.bsite.net/api/roles/update-role?id=${id}`, input, headers);
   if(response.status === 200){
-    return response.data.data
+    return response.data
   }else{
     console.log("edit roles err: ", response)
   }
 }
+
+export const editPermission = async (id, input) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      'language': "en"
+    }
+  }
+  const response = await axios.post(`https://olaniyi.bsite.net/api/permission/update-permission?id=${id}`, input, headers);
+  if(response.status === 200){
+    return response.data
+  }else{
+    console.log("permission roles err: ", response)
+  }
+}
+
 
 export const getAllPermissions = async () =>{
   const user = (JSON.parse(localStorage.getItem("user"))).data;
@@ -166,9 +186,9 @@ export const deletePermission = async (id) =>{
       'language': "en"
     }
   }
-  const response = await axios.post(`https://olaniyi.bsite.net/api/permission/delete-permission?id=${id}`, headers);
+  const response = await axios.post(`https://olaniyi.bsite.net/api/permission/delete-permission?id=${id}`, "",headers);
   if(response.status === 200){
-    return response.data.data
+    return response.data
   }else{
     console.log("delete permission err: ", response)
   }
@@ -252,9 +272,9 @@ export const deleteUser = async (input) =>{
       language: "en"
     }
   }
-  const response = await axios.post(`https://olaniyi.bsite.net/api/users/delete-user-profile?email=${input}`, headers);
+  const response = await axios.post(`https://olaniyi.bsite.net/api/users/delete-user-profile?email=${input}`, "",headers);
   if(response.status === 200){
-    return response
+    return response.data
   }else{
     console.log("delete user was unsuccessful")
   }

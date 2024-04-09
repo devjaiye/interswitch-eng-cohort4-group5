@@ -4,7 +4,7 @@ import DeleteDialogue from "./DeleteDialogue"
 import RemoveByCategorySlide from "./RemoveByCategorySlide"
 import RoleFormSlide from "./RoleFormSlide"
 import { toast, Toaster } from "sonner"
-import { useQuery } from "@tanstack/react-query"
+import {useQuery, useQueryClient} from "@tanstack/react-query"
 import { deletePermission, getAllPermissions, getSinglePermission } from "../services/api-calls"
 
 
@@ -17,6 +17,7 @@ export default function PermissionsTable() {
   const [permissionId, setPermissionId] = useState()
   const [loading, setLoading] = useState(false)
   const [openForm, setOpenForm] = useState('')
+  const queryClient = useQueryClient()
 
   const {data, isLoading} = useQuery({
     queryKey: ["GetAllPermissions"], 
@@ -33,15 +34,16 @@ export default function PermissionsTable() {
     console.log('Triggered')
   }, [permissionId, fetchSinglePermission])
 
-  const deleteSinglePermission = async (id) => {
+  const deleteSinglePermission = async () => {
     setLoading(true)
-    const response = await deletePermission(id)
+    const response = await deletePermission(permissionId)
     if(response){
       toast.success("Permission deleted successfully!")
     }else{
       toast.error("Couldn't delete permission!")
     }
-    setLoading(false)
+    setLoading(false);
+    queryClient.invalidateQueries("GetAllPermissions");
   }
 
   useEffect(()=>{
@@ -80,9 +82,9 @@ export default function PermissionsTable() {
                 >
                   Create Permission
                 </button>
-                <RoleFormSlide open={openSlide} setOpen={setOpenSlide} openForm={openForm} data={permissionDetails} id={permissionId} />
+                <RoleFormSlide open={openSlide} setOpen={setOpenSlide} openForm={openForm} data={permissionDetails} id={permissionId} openType="permission"/>
                 <CardDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} data={permissionDetails} tab={'permission'} />
-                <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} deleteFn={deleteSinglePermission} id={permissionId}/>
+                <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} deleteFn={deleteSinglePermission} id={permissionId} actionFor="permission"/>
                 <RemoveByCategorySlide open={removeByCategory} setOpen={setRemoveByCategory} />
 
               </div>

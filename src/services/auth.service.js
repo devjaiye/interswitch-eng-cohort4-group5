@@ -1,6 +1,5 @@
 import axios from "axios";
 const API_URL = "https://olaniyi.bsite.net/api/account/";
-const userId = localStorage.getItem("userId") | "";
 class AuthService {
 	login(email, password) {
 		return axios.post(API_URL + "login", {
@@ -30,13 +29,16 @@ class AuthService {
 	}
 
 	changePassword(newPassword, currentPassword) {
-		return axios.post(API_URL + `change-password/${{userId}}`, {
+		const userId = localStorage.userId;
+		console.log(userId)
+		return axios.post(API_URL + `change-password/${userId}`, {
 			currentPassword,
 			newPassword
 			},
 			{
 				headers: {
-					language: "en"
+					language: "en",
+					id: userId
 				}
 			}
 			).catch((e) => {

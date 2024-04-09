@@ -6,7 +6,7 @@ import RoleEditForm from './RoleEditForm'
 import PermissionForm from './PermissionForm'
 import RolePermissionForm from './RolePermissionForm'
 
-export default function RoleFormSlide({open, setOpen, openForm, data, id}) {
+export default function RoleFormSlide({open, setOpen, openForm, data, id, openType}) {
   // const [open, setOpen] = useState(true)
 
   return (
@@ -41,7 +41,7 @@ export default function RoleFormSlide({open, setOpen, openForm, data, id}) {
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-2xl font-semibold leading-6 text-gray-900">
-                          {openForm ==='edit' ? 'Edit Form Role' : openForm === 'permission' ? 'Create Permission Form' : 'Create Role Form'}
+                          {openForm ==='edit' && openType === "role" ? 'Edit Role Form' : openForm ==='edit' && openType === "permission" ? 'Edit Permission Form' : openForm === 'permission' ? 'Create Permission Form' : 'Create Role Form'}
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
@@ -57,7 +57,7 @@ export default function RoleFormSlide({open, setOpen, openForm, data, id}) {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {openForm === 'edit' ? <RoleEditForm data={data} id={id} /> : openForm === 'permission' ? <PermissionForm /> : openForm === 'rolepermission' ? <RolePermissionForm /> : <RoleForm />}
+                      {openForm === 'edit' ? <RoleEditForm data={data} id={id} openType={openType}/> : openForm === 'permission' ? <PermissionForm /> : openForm === 'rolepermission' ? <RolePermissionForm /> : <RoleForm />}
                     </div>
                   </div>
                 </Dialog.Panel>
