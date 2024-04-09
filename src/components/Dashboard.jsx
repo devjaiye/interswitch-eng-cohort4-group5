@@ -39,6 +39,7 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [page, setPage] = useState("")
   const [current, setCurrent] = useState(0)
+  const userDetails = (JSON.parse(localStorage.getItem("user"))).data;
 
   return (
     <>
@@ -167,7 +168,7 @@ export default function Dashboard() {
                       alt=""
                     />
                     <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Emmanuel</span>
+                    <span aria-hidden="true">{userDetails.user.firstName}</span>
                   </div>
                 </li>
               </ul>
