@@ -20,8 +20,8 @@ class AuthService {
 					// navigate("/app/dashboard");
 				}
 				return response.data;
-			}).catch((e) => {
-				alert(e)
+			}).catch(() => {
+				alert("Incorrect username/password")
 			});
 	}
 
