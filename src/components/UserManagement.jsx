@@ -90,11 +90,11 @@ export default function UserManagement() {
                       {people.map((person, index) => (
                         <tr key={person.email}>
 
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.firstName}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.lastName}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.email}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.phoneNumber}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.userRoles.map((role, index) =>{
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.firstName}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.lastName}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.email}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.phoneNumber}</td>
+                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.userRoles.map((role, index) =>{
                             return (
                               <span className="mr-1" key={index}>{role.roleName}</span>
                             )

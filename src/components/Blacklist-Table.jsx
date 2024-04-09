@@ -36,12 +36,12 @@ export default function BlacklistTable() {
  if(people) return (
     <div className="bg-gray-900 min-h-[90vh]" onClick={()=>setOpenAction(null)}>
       <div className="mx-auto max-w-7xl">
-        <div className="bg-gray-900 h-full py-10">
+        <div className="bg-gray-100 h-full py-10">
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
               <div className="sm:flex-auto">
-                <h1 className="text-base font-semibold leading-6 text-white">Black List</h1>
-                <p className="mt-2 text-sm text-gray-300">
+                <h1 className="text-base font-semibold leading-6 text-black">Black List</h1>
+                <p className="mt-2 text-sm text-black">
                   A list of all the users in your account including their name, title, email and role.
                 </p>
               </div>
@@ -50,14 +50,14 @@ export default function BlacklistTable() {
                 <button
                   onClick={()=>{setOpenSlide(true)}}
                   type="button"
-                  className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                  className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-black hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
                   Remove by Email
                 </button>
                 <button
                   onClick={()=>{setRemoveByCategory(true)}}
                   type="button"
-                  className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                  className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-black hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
                   Remove by Category
                 </button>
@@ -74,16 +74,16 @@ export default function BlacklistTable() {
                   <table className="min-w-full">
                   <thead>
                 <tr>
-                  <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-200 sm:pl-3">
+                  <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-black sm:pl-3">
                     Email
                   </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-100">
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                     Department
                   </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-100">
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                     Reason
                   </th>
-                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-100">
+                  <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-black">
                     Action
                   </th>
                 </tr>
@@ -91,9 +91,9 @@ export default function BlacklistTable() {
                     <tbody className="">
                       {people.map((person, index) => (
                         <tr key={person.email}>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.email}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.category}</td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.reason}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.email}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.category}</td>
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.reason}</td>
                           <td onClick={(e)=>{e.stopPropagation(); setOpenAction(index)}} className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                             <p className="text-indigo-400 cursor-pointer hover:text-indigo-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">

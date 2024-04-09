@@ -1,5 +1,4 @@
 
-import { createUser } from '../../services/createUser';
 const CreateUserForm = ()=> {
     
   const handleSubmit =  async (event) => {
@@ -12,26 +11,11 @@ const CreateUserForm = ()=> {
       alert("Phone number should contain only digits and not exceed 11 characters.");
       return; 
     }
-      const apiUserData = {
-        ...userData,
-        role: [{roleName: userData.role}]
-
-      }
-      try {
-        await createUser(apiUserData);
-        alert("User created successfully");
-
-      } 
-
-      catch (error){
-        console.error(error);
-        alert("Failed to create user. Please try again")
-      }
-    
+     
   };
 
   return (
-    <div className=" text-gray-600">
+    <div className=" text-black">
       <h2 className="mb-5 font-serif text-2xl text-gray-700">Enter User Information</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
