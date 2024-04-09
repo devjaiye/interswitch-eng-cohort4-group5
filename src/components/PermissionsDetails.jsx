@@ -1,7 +1,6 @@
-import React from 'react'
 import { toast, Toaster } from 'sonner'
 
-const CardDetails = ({data}) => {
+const PermissionDetails = ({data}) => {
   if(!data)toast.loading("Loading...")
   if(data) return (
     <div>
@@ -17,18 +16,17 @@ const CardDetails = ({data}) => {
         <p>Name: </p>
         <p>{data.name}</p>
 
-        <p>Department: </p>
-        <p>{data.department}</p>
+        <p>Description: </p>
+        <p>{data.description}</p>
 
         <p>isActive: </p>
         <p>{data.isActive? "true" : "False"}</p>
 
-        <p>Description: </p>
-        <p>{data.roleDescription}</p>
+        
 
       </div>
     </div>
   )
 }
 
-export default CardDetails
+export default PermissionDetails

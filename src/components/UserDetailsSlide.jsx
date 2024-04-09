@@ -5,7 +5,7 @@ import RemoveFromBlacklistForm from './RemoveFromBlacklistForm'
 import CardDetails from './CardDetails'
 import UserDetails from './UserDetails'
 
-export default function UserDetailsSlide({open, setOpen}) {
+export default function UserDetailsSlide({open, setOpen, data}) {
   // const [open, setOpen] = useState(true)
 
   return (
@@ -56,7 +56,7 @@ export default function UserDetailsSlide({open, setOpen}) {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      <UserDetails />
+                      <UserDetails data={data} />
                     </div>
                   </div>
                 </Dialog.Panel>
