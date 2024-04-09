@@ -89,16 +89,7 @@ export default function UserManagement() {
                     <tbody className="">
                       {people.map((person, index) => (
                         <tr key={person.email}>
-<<<<<<< HEAD
-                          {/* <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                            {person.cardNo}
-                          </td> */}
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.firstName}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.lastName}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.email}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.phoneNo}</td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm text-black">{person.userRole}</td>
-=======
+
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.firstName}</td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.lastName}</td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{person.email}</td>
@@ -108,7 +99,7 @@ export default function UserManagement() {
                               <span className="mr-1" key={index}>{role.roleName}</span>
                             )
                           })}</td>
->>>>>>> upstream/master
+
                           <td onClick={(e)=>{e.stopPropagation(); setOpenAction(index)}} className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                             <p className="text-indigo-400 cursor-pointer hover:text-indigo-300">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
