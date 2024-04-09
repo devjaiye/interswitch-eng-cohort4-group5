@@ -26,12 +26,12 @@ export default function Home() {
   })
 
   const stats = [
-    { id: 1, name: 'Number of User', value: users.length },
-    { id: 2, name: 'Number of Blacklisted User', value: blacklistUsers.length },
-    { id: 3, name: 'Total Number of Users', value: users.length + blacklistUsers.length },
-    { id: 1, name: 'Number of Roles', value: roles.length },
+    { id: 1, name: 'Number of User', value: users?.length },
+    { id: 2, name: 'Number of Blacklisted User', value: blacklistUsers?.length },
+    { id: 3, name: 'Total Number of Users', value: users?.length + blacklistUsers?.length },
+    { id: 1, name: 'Number of Roles', value: roles?.length },
     { id: 2, name: 'Number of Departments', value: '3' },
-    { id: 3, name: 'Total Number of Number of Permissions', value: permissions.length},
+    { id: 3, name: 'Total Number of Number of Permissions', value: permissions?.length},
   ]
 
   return (
