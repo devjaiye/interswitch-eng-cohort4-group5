@@ -86,7 +86,7 @@ const RemoveByEmail = () => {
       </div>
       </div>
 
-      <button disabled={loading} className='bg-blue-500 text-white p-2 rounded-2xl'>{loading ? 'Loading...' : 'Remove from Blacklist'}</button>
+      <button disabled={loading} className='bg-blue-500 text-white p-2 rounded-2xl'>{loading ? 'Loading...' : 'Add To Blacklist'}</button>
       
       </form>
     </div>
