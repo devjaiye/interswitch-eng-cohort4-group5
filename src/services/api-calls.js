@@ -80,6 +80,7 @@ export const getSignleRole = async (id) =>{
   }
   const response = await axios.get(`https://olaniyi.bsite.net/api/roles/view-role/${id}`, headers);
   if(response.status === 200){
+    console.log('res: ', response)
     return response.data.data
   }else{
     console.log("delete roles err: ", response)
@@ -202,6 +203,7 @@ export const getAllUsers = async () =>{
   }
   const response = await axios.get("https://olaniyi.bsite.net/api/users/view-all-users", headers);
   if(response.status === 200){
+    console.log('res all: ', response)
     return response.data.data
   }else{
     console.log("All roles err: ", response)
@@ -220,6 +222,7 @@ export const getSingleUser = async (id) =>{
   }
   const response = await axios.get(`https://olaniyi.bsite.net/api/users/view-users?userid=${id}`, headers);
   if(response.status === 200){
+    console.log('res: ', response)
     return response.data.data
   }else{
     console.log("single permission  err: ", response)
@@ -308,5 +311,57 @@ export const getAllBlacklist = async () =>{
     return response.data.data
   }else{
     console.log("all blacklist was unsuccessful")
+  }
+}
+
+export const removeFromBlacklistEmail = async (input) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      language: "en"
+    }
+  }
+  const response = await axios.post(`https://olaniyi.bsite.net/api/blacklist/delete-blacklist-email?email=${input}`, headers);
+  if(response.status === 200){
+    return response.data.data
+  }else{
+    console.log("all blacklist was unsuccessful")
+  }
+}
+
+export const removeFromBlacklistCategory = async (input) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      language: "en"
+    }
+  }
+  const response = await axios.post("https://olaniyi.bsite.net/api/blacklist/delete-blacklist-category", input, headers);
+  if(response.status === 200){
+    return response
+  }else{
+    console.log("removed blacklist was unsuccessful")
+  }
+}
+
+export const assignROlePermissions = async (input) =>{
+  const user = (JSON.parse(localStorage.getItem("user"))).data;
+  const token = user.token.token
+  const headers = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      language: "en"
+    }
+  }
+  const response = await axios.post("https://olaniyi.bsite.net/api/rolepermission/assign-permission", input, headers);
+  if(response.status === 200){
+    console.log('res: ', response)
+    return response
+  }else{
+    console.log("permission assign was unsuccessful")
   }
 }

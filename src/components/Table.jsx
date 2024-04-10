@@ -4,9 +4,8 @@ import AddNewUserSlide from "./AddNewUserSlide"
 import UserDetailsSlide from "./UserDetailsSlide"
 import { deleteUser, getAllUsers, getSingleUser } from "../services/api-calls"
 import { useQuery } from "@tanstack/react-query"
-import CardDetailsSlide from "./CardDetailsSlide"
-import RemoveByCategorySlide from "./RemoveByCategorySlide"
 import { Toaster } from "sonner"
+import AddToBlacklist from "./AddToBlacklist"
 
 
 export default function Table() {
@@ -19,10 +18,12 @@ export default function Table() {
   const [slide, setSlide] = useState('category')
   const [categoryBlacklist, setCategoryBlacklist] = useState(false)
 
-  const {data: people, isLoading} = useQuery({
+  const {data: allUsers, isLoading} = useQuery({
     queryKey: ["GetAllUsers"], 
     queryFn: () => getAllUsers()
   })
+
+  const people = allUsers.filter((user) => !user.isBlacklisted)
 
   const {data: userDetails, refetch: fetchSingleUser} = useQuery({
     queryKey: ["GetSingleUser"], 
@@ -47,7 +48,7 @@ export default function Table() {
     )
   }
   
-  if(people) return (
+  if(allUsers) return (
     <div className="bg-gray-900 min-h-[90vh]" onClick={()=>setOpenAction(null)}>
       <Toaster richColors position="top-right" />
       <div className="mx-auto max-w-7xl">
@@ -89,7 +90,7 @@ export default function Table() {
                 <UserDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} data={userDetails} />
                 <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} deleteFn2={deleteSingleUser} />
                 <AddNewUserSlide open={openSlide} setOpen={setOpenSlide}/>
-                <RemoveByCategorySlide open={categoryBlacklist} setOpen={setCategoryBlacklist} slide={slide} />
+                <AddToBlacklist open={categoryBlacklist} setOpen={setCategoryBlacklist} slide={slide} />
 
               </div>
             </div>

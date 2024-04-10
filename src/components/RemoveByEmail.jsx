@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select';
-import { blacklistByEmail, getAllUsers } from '../services/api-calls';
+import { blacklistByEmail, getAllBlacklist, getAllUsers, removeFromBlacklistEmail } from '../services/api-calls';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
@@ -9,21 +9,21 @@ const RemoveByEmail = () => {
   const { handleSubmit, reset, control} = useForm()
   const [loading, setLoading] = useState(false)
 
-  const {data: people, refetch} = useQuery({
-    queryKey: ["GetAllUsers"], 
-    queryFn: () => getAllUsers()
+  const {data:people, refetch} = useQuery({
+    queryKey: ["GetAllBlacklist"], 
+    queryFn: () => getAllBlacklist()
   })
 
   const onSubmit = async (input) => {
     setLoading(true)
     const myData = {
       email: input.email.label,
-      reason: input.reason
+      // reason: input.reasons
     }
     console.log('blackdata: ', myData)
-    const submit = await blacklistByEmail(myData)
+    const submit = await removeFromBlacklistEmail(input.email.label)
     if(submit && submit.data.data == true){
-      toast.success('User was blacklisted successfully!')
+      toast.success('User was removed from blacklist successfully!')
       reset()
     }else{
       toast.error('Couldnt blacklist user')

@@ -1,10 +1,13 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import RemoveFromBlacklistForm from './RemoveFromBlacklistForm'
+import RemoveByCategory from './RemoveByCategory'
 import RemoveByEmail from './RemoveByEmail'
+import AddToBlacklistByEmail from './AddToBlacklistByEmail'
+import AddToBlacklistByCategory from './AddToBlacklistByCategory'
 
-export default function SlideOver({open, setOpen}) {
+export default function AddToBlacklist({open, setOpen, slide}) {
   // const [open, setOpen] = useState(true)
 
   return (
@@ -39,7 +42,7 @@ export default function SlideOver({open, setOpen}) {
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-2xl font-semibold leading-6 text-gray-900">
-                          Remove From Blacklist Form
+                          Add To Blacklist Form
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
@@ -55,7 +58,7 @@ export default function SlideOver({open, setOpen}) {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      <RemoveByEmail />
+                      {slide === 'email' ? <AddToBlacklistByEmail /> : <AddToBlacklistByCategory />}
                     </div>
                   </div>
                 </Dialog.Panel>
