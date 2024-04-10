@@ -1,29 +1,22 @@
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select';
-import { blacklistByEmail, getAllBlacklist, getAllUsers, removeFromBlacklistEmail } from '../services/api-calls';
-import { useQuery } from '@tanstack/react-query';
+import { blacklistByCategory } from '../services/api-calls';
 import { toast } from 'sonner';
 
-const RemoveByEmail = () => {
-  const { handleSubmit, reset, control} = useForm()
+const AddToBlacklistByCategory = () => {
+  const { handleSubmit, reset, refetch, control} = useForm()
   const [loading, setLoading] = useState(false)
 
-  const {data:people, refetch} = useQuery({
-    queryKey: ["GetAllBlacklist"], 
-    queryFn: () => getAllBlacklist()
-  })
-
   const onSubmit = async (input) => {
-    setLoading(true)
     const myData = {
-      email: input.email.label,
-      // reason: input.reasons
+      category: input.category.label,
+      reason: input.reason
     }
     console.log('blackdata: ', myData)
-    const submit = await removeFromBlacklistEmail(input.email.label)
+    const submit = await blacklistByCategory(myData)
     if(submit && submit.data.data == true){
-      toast.success('User was removed from blacklist successfully!')
+      toast.success('User was blacklisted successfully!')
       reset()
     }else{
       toast.error('Couldnt blacklist user')
@@ -31,24 +24,27 @@ const RemoveByEmail = () => {
     refetch()
     setLoading(false)
   }
-
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3'>
       <div className='w-full'>
       <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
-        Select Email
+        Select Department
       </label>
       <Controller
-        name="email"
+        name="category"
         control={control}
-        defaultValue=''
+        defaultValue='Administratives'
         rules={{ required: true }}
         render={({ field }) => (
           <Select
           className='text-gray-900'
             {...field}
-            options={people && people.map((user) => ({value: user.email, label: user.email}) )}
+            options={[
+              { value: "Administratives", label: "Administratives" },
+              { value: "Operations", label: "Operations" },
+              { value: "Technologies", label: "Technology" }
+            ]}
             
             onChange={(selectedOption) => {field.onChange(selectedOption); console.log('select: ', selectedOption)}}
             
@@ -86,11 +82,11 @@ const RemoveByEmail = () => {
       </div>
       </div>
 
-      <button disabled={loading} className='bg-blue-500 text-white p-2 rounded-2xl'>{loading ? 'Loading...' : 'Add To Blacklist'}</button>
+      <button disabled={loading} className='bg-blue-500 text-white p-2 rounded-2xl'>{loading ? 'Loading...' : 'Add to Blacklist'}</button>
       
       </form>
     </div>
   )
 }
 
-export default RemoveByEmail
+export default AddToBlacklistByCategory

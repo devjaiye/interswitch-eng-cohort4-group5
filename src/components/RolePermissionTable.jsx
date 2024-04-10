@@ -109,7 +109,7 @@ export default function RolePermissionTable() {
               </thead>
                     <tbody className="">
                       {data.map((permission, index) => (
-                        <tr key={permission.id}>
+                        <tr key={permission.roleId}>
                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-300 sm:pl-3">
                             {permission.roleId}
                             </td>
@@ -130,6 +130,7 @@ export default function RolePermissionTable() {
                             <div className= "w-24 bg-slate-100 text-black z-20 rounded-md shadow-md absolute right-0">
                               <ul className="flex flex-col gap-1 w-full text-sm items-start bg-none py-1">
                                 <li onClick={(e)=>{e.stopPropagation(); setOpenCardDetails(true); setOpenAction(null); fetchSingleRole()}} className="cursor-pointer p-1 px-2 hover:bg-slate-200 hover:rounded-md w-full text-start">View</li>
+                                <li onClick={(e)=>{e.stopPropagation(); setOpenCardDetails(true); setOpenAction(null); fetchSingleRole()}} className="cursor-pointer p-1 px-2 hover:bg-slate-200 hover:rounded-md w-full text-start">Assign</li>
                                 
                               </ul>
                             </div>

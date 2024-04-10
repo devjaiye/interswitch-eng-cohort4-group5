@@ -1,29 +1,29 @@
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select';
-import { blacklistByEmail, getAllBlacklist, getAllUsers, removeFromBlacklistEmail } from '../services/api-calls';
+import { blacklistByEmail, getAllUsers } from '../services/api-calls';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-const RemoveByEmail = () => {
+const AddToBlacklistByEmail = () => {
   const { handleSubmit, reset, control} = useForm()
   const [loading, setLoading] = useState(false)
 
-  const {data:people, refetch} = useQuery({
-    queryKey: ["GetAllBlacklist"], 
-    queryFn: () => getAllBlacklist()
+  const {data: people, refetch} = useQuery({
+    queryKey: ["GetAllUsers"], 
+    queryFn: () => getAllUsers()
   })
 
   const onSubmit = async (input) => {
     setLoading(true)
     const myData = {
       email: input.email.label,
-      // reason: input.reasons
+      reason: input.reason
     }
     console.log('blackdata: ', myData)
-    const submit = await removeFromBlacklistEmail(input.email.label)
+    const submit = await blacklistByEmail(myData)
     if(submit && submit.data.data == true){
-      toast.success('User was removed from blacklist successfully!')
+      toast.success('User was blacklisted successfully!')
       reset()
     }else{
       toast.error('Couldnt blacklist user')
@@ -86,11 +86,11 @@ const RemoveByEmail = () => {
       </div>
       </div>
 
-      <button disabled={loading} className='bg-blue-500 text-white p-2 rounded-2xl'>{loading ? 'Loading...' : 'Add To Blacklist'}</button>
+      <button disabled={loading} className='bg-blue-500 text-white p-2 rounded-2xl'>{loading ? 'Loading...' : 'Add to Blacklist'}</button>
       
       </form>
     </div>
   )
 }
 
-export default RemoveByEmail
+export default AddToBlacklistByEmail

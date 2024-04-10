@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select';
-import { blacklistByCategory } from '../services/api-calls';
+import { blacklistByCategory, removeFromBlacklistCategory } from '../services/api-calls';
 import { toast } from 'sonner';
 
 const RemoveByCategory = () => {
@@ -14,7 +14,7 @@ const RemoveByCategory = () => {
       reason: input.reason
     }
     console.log('blackdata: ', myData)
-    const submit = await blacklistByCategory(myData)
+    const submit = await removeFromBlacklistCategory(myData)
     if(submit && submit.data.data == true){
       toast.success('User was blacklisted successfully!')
       reset()
