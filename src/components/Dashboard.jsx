@@ -19,6 +19,8 @@ import Profile from './Profile'
 import RoleTable from './RoleTable'
 import PermissionsTable from './PermissionsTable'
 import RolePermissionTable from './RolePermissionTable'
+import AuthService from '../services/auth.service'; 
+import { useNavigate } from 'react-router-dom'; 
 
 const navigation = [
   { name: 'Dashboard', href: '', icon: HomeIcon, current: true },
@@ -39,6 +41,14 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [page, setPage] = useState("")
   const [current, setCurrent] = useState(0)
+  const navigate = useNavigate(); 
+
+  
+
+  const handleLogout = () => {
+    AuthService.logout(); // i called logout method from AuthService
+    navigate('/'); // Redirecting to login page
+  }
 
   return (
     <>
@@ -167,7 +177,7 @@ export default function Dashboard() {
                       alt=""
                     />
                     <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Emmanuel</span>
+                    <button aria-hidden="true"  onClick={handleLogout}>Logout</button>
                   </div>
                 </li>
               </ul>

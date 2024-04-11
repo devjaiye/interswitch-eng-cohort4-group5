@@ -40,7 +40,7 @@ export default function RemoveByCategorySlide({open, setOpen, slide}) {
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-2xl font-semibold leading-6 text-gray-900">
-                          Remove From Blacklist Form
+                          Add Item To Blacklist
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
