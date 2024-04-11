@@ -50,7 +50,6 @@ export default function UserManagement() {
                 >
                   Create New User
                 </button>
-                {/* <CardDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} /> */}
                 <UserDetailsSlide open={openCardDetails} setOpen={setOpenCardDetails} />
                 <DeleteDialogue open={deleteCard} setOpen={setDeleteCard} />
                 <AddNewUserSlide open={openSlide} setOpen={setOpenSlide}/>

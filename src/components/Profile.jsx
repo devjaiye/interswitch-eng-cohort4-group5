@@ -49,14 +49,9 @@ const Profile = () => {
                       <span className="sr-only">Status</span>
                       <LockClosedIcon className="h-6 w-5 text-gray-400" aria-hidden="true"/>
                     </dt>
-                    <dd className="text-sm leading-6 text-gray-500">{userDetails.roleName}</dd>
+                    <dd className="text-sm leading-6 text-gray-500 mb-8">{userDetails.roleName}</dd>
                   </div>
                 </dl>
-                <div className="mt-6 border-t border-gray-900/5 px-6 py-6">
-                  <Link to={""} className="text-sm font-semibold leading-6 text-gray-900">
-                    Edit Profile <span aria-hidden="true">&rarr;</span>
-                  </Link>
-                </div>
               </div>
             </div>
           </main>

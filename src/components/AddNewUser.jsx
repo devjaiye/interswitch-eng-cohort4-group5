@@ -96,7 +96,10 @@ const AddNewUser = () => {
       </label>
       <div className="mt-2">
         <input
-        {...register('phoneNumber')}
+        {...register('phoneNumber', {
+          required: true,
+          pattern: /^[0-9]{1,11}$/
+        })}
           type="text"
           name="phoneNumber"
           id="phoneNumber"
