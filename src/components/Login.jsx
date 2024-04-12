@@ -88,9 +88,8 @@ const Login = () => {
                   <input type="password" id="login-password" className="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="Password" name="password" onChange={handleChange}/>
                 </div>
                 {errors.password && <span style={{color: "red", textTransform: "capitalize"}}>{errors.password}</span>}
-
               </div>
-              <a href="#" className="mb-6 text-center text-sm font-medium text-gray-600 md:text-left">Forgot password?</a>
+              
               <button type="submit" className="rounded-lg bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white shadow-md outline-none ring-blue-500 ring-offset-2 transition hover:bg-blue-700 focus:ring-2 md:w-32 flex justify-center align-middle">
                 {
                   loading ? <ColorRing
@@ -107,12 +106,7 @@ const Login = () => {
               </button>
             </form>
             {message}
-            <div className="py-12 text-center">
-              <p className="text-gray-600">
-                Don{"'"}t have an account?
-                <a href="#" className="whitespace-nowrap font-semibold text-gray-900 underline underline-offset-4">Sign up for free.</a>
-              </p>
-            </div>
+
           </div>
         </div>
         <div className="relative hidden h-screen select-none bg-blue-600 bg-gradient-to-br md:block md:w-1/2">
@@ -122,8 +116,8 @@ const Login = () => {
             <p className="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt necessitatibus nostrum repellendus ab totam.</p>
             <a href="#" className="font-semibold tracking-wide text-white underline underline-offset-4">Learn More</a>
           </div>
-          <img className="ml-8 w-11/12 max-w-lg rounded-lg object-cover"
-               src="https://scanbot.io/wp-content/uploads/2024/02/demo-apps-feature-barcode-768x717.png" />
+          <img className="ml-8 w-1/2 max-w-lg rounded-lg object-cover"
+               src="https://iili.io/JvAT4ZF.png" />
         </div>
       </div>
 

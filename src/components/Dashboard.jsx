@@ -41,9 +41,7 @@ export default function Dashboard() {
   const [page, setPage] = useState("")
   const [current, setCurrent] = useState(0)
   const navigate = useNavigate(); 
-
   
-
   const handleLogout = () => {
     AuthService.logout(); // i called logout method from AuthService
     navigate('/'); // Redirecting to login page
@@ -122,6 +120,7 @@ export default function Dashboard() {
                                 </p>
                               </li>
                             ))}
+
                           </ul>
                         </li>
                       </ul>
