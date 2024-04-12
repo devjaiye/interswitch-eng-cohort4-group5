@@ -26,8 +26,10 @@ Access the live application here: [Blacklist Management App](https://interswitch
 
 Upon accessing the live application, users will encounter a login screen. For demonstration purposes, the following credentials have been set up:
 
-•⁠  ⁠*Email:* roleuseradmin@gmail.com
-•⁠  ⁠*Password:* Admin@123.
+```
+⁠ ⁠Email: roleuseradmin@gmail.com
+ ⁠Password: Admin@123.
+```
 
 ## Source Code
 
