@@ -113,7 +113,7 @@ const Login = () => {
           <div className="py-16 px-8 text-white xl:w-[40rem]">
             <span className="rounded-full bg-white px-3 py-1 font-medium text-blue-600">New Feature</span>
             <p className="my-6 text-3xl font-semibold leading-10">Black List items <span className="abg-white whitespace-nowrap py-2 text-cyan-300">in real time</span>.</p>
-            <p className="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt necessitatibus nostrum repellendus ab totam.</p>
+            <p className="mb-4">The best Admin Management platform for managing and blacklisting items seamlessly! </p>
             <a href="#" className="font-semibold tracking-wide text-white underline underline-offset-4">Learn More</a>
           </div>
           <img className="ml-8 w-1/2 max-w-lg rounded-lg object-cover"
